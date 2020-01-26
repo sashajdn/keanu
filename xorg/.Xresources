@@ -1,0 +1,11 @@
+
+
+! Fonts:
+URxvt.font: xft:Source Code Pro:size=12
+
+! Scrollbar:
+URxvt.scrollBar: false
+
+!!! ---  INCLUDE FILES --- !!!
+! Colours:
+# include ".Xresources.d/space-vim-dark"

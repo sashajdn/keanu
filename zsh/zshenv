@@ -1,0 +1,25 @@
+### --- Keanu ZSH ENV --- ###
+
+export EDITOR="vim"
+export READER="zathura"
+export VISUAL="vim"
+export CODEEDITOR="vim"
+export TERMINAL="urxvt"
+export BROWSER="firefox"
+export VIMBROWSER="firefox"
+export OPENER="xdg-open"
+export WM="i3"
+export WALLPAPER="$($HOME/keanu/wallpaper/default.jpg)"
+
+### Python ###
+export PATH=$PATH:$HOME/.local/bin
+
+
+## LESS TERMCAP
+
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 4)  ## blue
+export LESS_TERMCAP_md=$(tput bold; tput setaf 5)  ## magenta
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3)  ## yellow
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 6)  ## cyan
+export LESS_TERMCAP_me=$(tput sgr0)  ## End bold, blinking, standout & underline

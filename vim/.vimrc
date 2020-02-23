@@ -6,19 +6,18 @@ let mapleader =" "
 """ --- Colours
 set t_Co=256
 
-""" --- Plugin Manager
-	"" Install
+""" --- Plugin Manager Install
 	if empty(glob('~/.vim/autoload/plug.vim'))
 		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs 
 					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 	endif
 
+""" --- Plugin Manager
 	call plug#begin('~/.vim/plugged')
 
 	" Highlighting
-	Plug 'haya14busa/incsearch.vim'
-	" Vim Tree
+	Plug 'haya14busa/incsearch.vim' " Vim Tree
 	Plug 'scrooloose/nerdtree'
 	" Code
 	Plug 'ervandew/supertab'
@@ -39,6 +38,8 @@ set t_Co=256
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
+	set noswapfile
+	set colorcolumn=100
 	autocmd Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 """ --- Keybindings
@@ -75,6 +76,9 @@ set t_Co=256
 
 """ --- Goyo
 	map <leader>f :Goyo \| set linebreak<CR>
+
+""" --- NerdTree
+	map <leader>f :NERDTreeToggle<CR>
 
 """ --- Spell-check
 	map <leader>o :setlocal spell! spelllang=en_gb<CR>

@@ -1,0 +1,23 @@
+#!/bin/zsh
+
+#
+## Toggle floating dropdown terminal in i3.
+## $1 is the script run in the terminal
+## All other args are terminal settings
+## Terminal names are in dropdown_*.
+#
+
+
+[ -z "$1" ] && exit
+
+SCRIPT=$1
+shift
+if xwininfo -tree -root | grep "(\"dropdown_$SCRIPT\" ";
+then 
+	echo "Window detected."
+	i3 "[instance=\"dropdown_$SCRIPT\"] scratchpad show; \
+		[instance=\"dropdown_$SCRIPT\"] move position center"
+else
+	echo "Window not detected... spawning."
+	i3 "exec --no-startup-id $TERMINAL -n dropdown_$SCRIPT $@ -e bash -c '$HOME/keanu/bin/i3cmds/$SCRIPT'"
+fi

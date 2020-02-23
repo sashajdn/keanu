@@ -1,48 +1,61 @@
-# ZSH config
+### --- Keanu ZSH config --- ###
 
 
-# Enable colours
+## neofetch
+neofetch
+
+## Enable colours
 autoload -U colors && colors
 
-# Preload VCS
+
+### --- VCS --- ###
+## Preload VCS
 autoload -Uz vcs_info
 precmd() { vcs_info }
 
-# Format VCS info
+## Format VCS info
 zstyle ':vcs_info:git:*' formats '%b'
 
+### --- Prompt --- ###
 # Prompt
 setopt PROMPT_SUBST
-PROMPT='[%n@%M ${PWD/#$HOME/~}] vcs:${vcs_info_msg_0_} $ '
+NEWLINE=$'\n'
+PROMPT='[%B%F{169}%n%f%b%B%F{38}@%f%b%F{169}%M%f %B%F{38}${PWD/#$HOME/~}%f%b] %B%F{1}${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{38}$%f%b '
 
-# History in cache directory
+
+### --- History --- ###
+## History in cache directory
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
-# Basic auto/tab complete, gives tab completion menu
+### --- Completion --- ###
+## Basic auto/tab complete, gives tab completion menu
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)  # include hidden files
 
-# Vi mode
+### --- LS Colours --- ###
+
+### --- Vi --- ###
+## Vi Mode
 bindkey -v
 export KEYTIMEOUT=1
 
-# Vi bindings for complete menu
+## Vi bindings for complete menu
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# Edit cmd with vim, with ctrl-e
+## Edit cmd with vim, with ctrl-e
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Vi cursor change mode dependent
+## Vi cursor change mode dependent
 function zle-keymap-select {
 	if [[ ${KEYMAP} == vicmd ]] ||
 	   [[ $1 = 'block' ]]; then
@@ -62,7 +75,9 @@ zle -N zle-line-init
 echo -n '\e[5 q'  # Use beam shape cursor on startup
 preexec() { echo -ne '\e[5 q' ;}  # Use beam cursor for each new prompt
 
-# LF to switch dirs, bind to ctrl-o
+
+### --- LF --- ###
+## LF to switch dirs, bind to ctrl-o
 lfcd () {
 	tmp="$(mktemp)"
 	lf -last-dir-path="$tmp" "$@"
@@ -74,9 +89,15 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
+### --- Aliases --- ###
 # Load aliases if exist
+[ -f "$HOME/keanu/zsh/aliasrc" ] && source "$HOME/keanu/zsh/aliasrc"
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
-# Syntax highlighting (should be last)
+### --- Environment --- ###
+[ -f "$HOME/keanu/environments/keanu.env" ] && source "$HOME/keanu/environments/keanu.env"
+[ -f "$HOME/keanu/zsh/zshenv" ] && source "$HOME/keanu/zsh/zshenv"
+
+### --- Syntax highlighting (should be last) --- ###
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
 

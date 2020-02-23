@@ -5,3 +5,13 @@ alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -la'
+
+
+## git
+alias gs='git status'
+alias gl='git log'
+alias gch='git checkout'
+alias ga='git add'
+alias gpl='git pull'
+alias gps='git push origin'
+alias gc='git commit'

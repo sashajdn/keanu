@@ -9,7 +9,7 @@ export BROWSER="firefox"
 export VIMBROWSER="firefox"
 export OPENER="xdg-open"
 export WM="i3"
-export WALLPAPER="$($HOME/keanu/wallpaper/default.jpg)"
+export WALLPAPER="$(echo $HOME/keanu/wallpapers/default.jpg)"
 
 ### Python ###
 export PATH=$PATH:$HOME/.local/bin

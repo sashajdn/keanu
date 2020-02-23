@@ -1,5 +1,9 @@
 ### --- Keanu ZSH config --- ###
 
+
+## neofetch
+neofetch
+
 ## Enable colours
 autoload -U colors && colors
 

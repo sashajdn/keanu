@@ -15,18 +15,23 @@ set t_Co=256
 
 """ --- Plugin Manager
 	call plug#begin('~/.vim/plugged')
-
-	" Highlighting
-	Plug 'haya14busa/incsearch.vim' " Vim Tree
-	Plug 'scrooloose/nerdtree'
 	" Code
 	Plug 'ervandew/supertab'
+	Plug 'scrooloose/nerdcommenter'
+	" Navigation
+	Plug 'scrooloose/nerdtree'
+	" Highlighting
+	Plug 'haya14busa/incsearch.vim' " Vim Tree
+	" Fuzzy Finder
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': '/.install --all' }
+	Plug 'junegunn/fzf.vim'
 	" Syntax Highlighting
 	Plug 'junegunn/goyo.vim'
 	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'dense-analysis/ale'
 	" Python
 	Plug 'vim-scripts/indentpython.vim'
+	Plug 'kh3phr3n/python-syntax'
 	" Theme
 	Plug 'liuchengxu/space-vim-theme'
 
@@ -35,12 +40,36 @@ set t_Co=256
 """ --- Basics
 	set nocompatible
 	filetype plugin on
+	filetype indent on
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
 	set noswapfile
 	set colorcolumn=100
 	autocmd Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+""" --- File Storage
+	set directory=~/.vim/dirs/tmp
+	set backup
+	set backupdir=~/.vim/dirs/backups
+	set undofile
+	set undodir=~/.vim/dirs/undos
+	set viminfo+=n~/.vim/dirs/viminfo
+
+	if !isdirectory(&backupdir)
+		call mkdir(&backupdir, "p")
+	endif
+
+	if !isdirectory(&directory)
+		call mkdir(&directory, "p")
+	endif
+
+	if !isdirectory(&undodir)
+		call mkdir(&undodir, "p")
+	endif
+
+""" --- Operations
+	ca w!! w !sudo tee "%"            " Save as sudo by default
 
 """ --- Keybindings
 	nnoremap S :%s//g<Left><Left>
@@ -61,6 +90,9 @@ set t_Co=256
 	    let &t_te.="\<Esc>[0 q"
 	endif
 
+""" --- Scrolling
+	set scrolloff=3
+
 """ --- Highlighting
 	set hlsearch
 	let g:incsearch#auto_nohlsearch = 1
@@ -75,10 +107,13 @@ set t_Co=256
 	map g# <Plug>(incsearch-nohl-g#)
 
 """ --- Goyo
-	map <leader>f :Goyo \| set linebreak<CR>
+	map <leader>g :Goyo \| set linebreak<CR>
 
 """ --- NerdTree
 	map <leader>f :NERDTreeToggle<CR>
+	highlight! link NERDTreeFlags NERDTreeDir
+
+	let NERDTreeIgnore = ['\.pyc$']
 
 """ --- Spell-check
 	map <leader>o :setlocal spell! spelllang=en_gb<CR>
@@ -89,6 +124,8 @@ set t_Co=256
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
+
+	set fillchars+=vert:\
 
 """ --- ALE
 	highlight ALEWarning ctermbg=DarkMagenta
@@ -106,6 +143,12 @@ set t_Co=256
 	    \ set shiftwidth=4
 	    \ set fileformat=unix
 	    \ set textwidth=99
+
+	au FileType python map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
+	au FileType python map <silent> <leader>i Odef __init__(self):<esc>
+
+	let python_highlight_all = 1
+	highlight pythonDecorator guibg=red
 
 """ --- Front End 
 	au BufNewFile,BufRead *.js *.html, *.css

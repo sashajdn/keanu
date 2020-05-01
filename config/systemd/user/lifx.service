@@ -1,0 +1,15 @@
+[Unit]
+Description=lifx
+Wants=network-online.target
+After=network-online.target
+Conflicts=reboot.target
+Before=shutdown.target
+
+[Service]
+EnvironmentFile=/etc/lifx/lifx.conf
+ExecStart=/opt/lifx/toggle.sh
+ExecStop=/opt//lifx/toggle.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

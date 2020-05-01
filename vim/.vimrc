@@ -1,4 +1,4 @@
-""" --- Keanu VIMRC --- """
+" --- Keanu VIMRC
 
 """ --- Leader
 let mapleader =" "
@@ -21,14 +21,38 @@ set t_Co=256
 	Plug 'scrooloose/nerdtree'
 	" Code
 	Plug 'ervandew/supertab'
+	" Fuzzy Finder
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': '/.install --all' }
+	Plug 'junegunn/fzf.vim'
+	" Text Search
+	Plug 'git@github.com:rking/ag.vim.git'
 	" Syntax Highlighting
 	Plug 'junegunn/goyo.vim'
 	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'dense-analysis/ale'
+	" Golden Ratio
+	Plug 'roman/golden-ratio'
+	" Node
+	Plug 'git@github.com:moll/vim-node.git'
+	" Typescript
+	Plug 'leafgarland/typescript-vim'
+	Plug 'ianks/vim-tsx'
+	" React
+	Plug 'maxmellon/vim-jsx-pretty'
+	" Go
+	Plug 'fatih/vim-go'
+	" Haskell
+	Plug 'neovimhaskell/haskell-vim'
 	" Python
 	Plug 'vim-scripts/indentpython.vim'
+	Plug 'kh3phr3n/python-syntax'
+	Plug 'psf/black', { 'branch': 'stable' }
+	" GraphQL
+	Plug 'jparise/vim-graphql'
 	" Theme
 	Plug 'liuchengxu/space-vim-theme'
+	" YCM 
+	Plug 'git@github.com:Valloric/YouCompleteMe.git'
 
 	call plug#end()
 
@@ -39,11 +63,16 @@ set t_Co=256
 	set encoding=utf-8
 	set number relativenumber
 	set noswapfile
-	set colorcolumn=100
 	autocmd Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 """ --- Keybindings
 	nnoremap S :%s//g<Left><Left>
+	nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
+	nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
+	nnoremap <silent> <Leader>h :split<CR>
+	nnoremap <silent> <Leader>v :vsplit<CR>
+	nnoremap <silent> <Leader>r :GoldenRatioToggle<CR>
+	nnoremap <silent> <Leader>l :call g:ToggleNuMode()<CR>
 
 """ --- Autocompletion:
 	set wildmode=longest,list,full
@@ -60,6 +89,20 @@ set t_Co=256
 	    let &t_EI.="\<Esc>[1 q"
 	    let &t_te.="\<Esc>[0 q"
 	endif
+
+""" --- Scrolling
+	set scrolloff=3
+
+""" --- Toggles
+	function! g:ToggleNuMode()
+		if &nu == 1
+			set nonu
+			set rnu
+		else
+			set nornu
+			set nu
+		endif
+	endfunction
 
 """ --- Highlighting
 	set hlsearch
@@ -85,17 +128,37 @@ set t_Co=256
 
 """ --- Vim Splits
 	set splitbelow splitright
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
+	nnoremap <leader>h :wincmd h<CR>
+	nnoremap <leader>j :wincmd j<CR>
+	nnoremap <leader>k :wincmd k<CR>
+	nnoremap <leader>l :wincmd l<CR>
 
 """ --- ALE
 	highlight ALEWarning ctermbg=DarkMagenta
 	let g:ale_completion_enabled = 1
 	let g:ale_lint_on_text_changed = 1
 	let g:ale_set_highlights = 1
-	let g:ale_linters = {'python': ['pylint', 'flake8', 'isort']}
+	let g:ale_linters = {
+	\	'python': ['pylint', 'flake8', 'isort', 'black'],
+	\	'javascript': ['eslint'],
+	\	'typescript': ['tsserver', 'tslint'],
+	\}
+	let g:ale_fixers = {
+	\	'python': ['black'],
+	\	'javascript': ['eslint'],
+	\	'typescript': ['prettier'],
+	\	'scss': ['prettier'],
+	\	'html': ['prettier'],
+	\}
+
+""" --- Javascript
+	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+
+""" --- Typescript
+	autocmd FileType typescript setlocal ts=2 sts=2 sw=2 expandtab formatprg=prettier\ --parser\ typescript
+ 
+""" --- Go
+	let g:go_fmt_command = "goimports"
 
 """ --- Python
 	au BufNewFile,BufRead *.py
@@ -106,11 +169,15 @@ set t_Co=256
 	    \ set shiftwidth=4
 	    \ set fileformat=unix
 	    \ set textwidth=99
+	    \ set colorcolumn=88
+
 
 """ --- Front End 
-	au BufNewFile,BufRead *.js *.html, *.css
+	au BufNewFile,BufRead *.html, *.css
+	    \ set expandtab
+	    \ set autoindent
 	    \ set tabstop=2
-	    \ set softtabstop=4
+	    \ set softtabstop=2
 	    \ set shiftwidth=2
 
 """ --- Whitespace

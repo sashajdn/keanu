@@ -11,12 +11,12 @@ export OPENER="xdg-open"
 export WM="i3"
 export WALLPAPER="$(echo $HOME/keanu/wallpapers/default.jpg)"
 
+
 ### Python ###
 export PATH=$PATH:$HOME/.local/bin
 
 
 ## LESS TERMCAP
-
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 4)  ## blue
 export LESS_TERMCAP_md=$(tput bold; tput setaf 5)  ## magenta
 export LESS_TERMCAP_so=$(tput bold; tput setaf 3)  ## yellow

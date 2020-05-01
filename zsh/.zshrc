@@ -97,7 +97,8 @@ bindkey -s '^o' 'lfcd\n'
 ### --- Environment --- ###
 [ -f "$HOME/keanu/environments/keanu.env" ] && source "$HOME/keanu/environments/keanu.env"
 [ -f "$HOME/keanu/zsh/zshenv" ] && source "$HOME/keanu/zsh/zshenv"
+[ -f "$HOME/keanu/.env" ] && source "$HOME/keanu/.env"
+
 
 ### --- Syntax highlighting (should be last) --- ###
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
-

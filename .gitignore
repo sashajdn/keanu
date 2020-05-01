@@ -12,3 +12,4 @@ matplotlib
 yay
 gtk-3.0
 lifx/lifx.conf
+config/systemd/user/default.target.wants*

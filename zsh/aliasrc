@@ -15,3 +15,7 @@ alias ga='git add'
 alias gpl='git pull'
 alias gps='git push origin'
 alias gc='git commit'
+
+
+# docker-compose
+alias dc='docker-compose'

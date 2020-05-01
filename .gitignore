@@ -1,1 +1,15 @@
-.Xauthority
+## Xorg
+xorg/.Xauthority
+*.Xauthority
+
+*dconf/user
+.env
+Altair GraphQL Client
+config/yarn
+config/configstore
+config/Electron
+matplotlib
+yay
+gtk-3.0
+lifx/lifx.conf
+config/systemd/user/default.target.wants*

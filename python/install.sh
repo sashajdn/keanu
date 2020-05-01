@@ -7,4 +7,4 @@
 #
 
 sudo pacman -S python-pip
-pip install ipython --user  ## system-wide ipython
+pip install ipython pylint flake8 black --user  ## system-wide ipython

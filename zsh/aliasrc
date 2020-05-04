@@ -13,9 +13,13 @@ alias gl='git log'
 alias gch='git checkout'
 alias ga='git add'
 alias gpl='git pull'
-alias gps='git push origin'
+alias gpo='git push origin'
 alias gc='git commit'
 
 
-# docker-compose
+## docker
 alias dc='docker-compose'
+
+
+## zathura
+alias zath='zathura'

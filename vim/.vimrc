@@ -3,9 +3,6 @@
 """ --- Leader
 let mapleader =" "
 
-""" --- Colours
-set t_Co=256
-
 """ --- Plugin Manager Install
 	if empty(glob('~/.vim/autoload/plug.vim'))
 		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs 
@@ -34,9 +31,10 @@ set t_Co=256
 	Plug 'roman/golden-ratio'
 	" Node
 	Plug 'git@github.com:moll/vim-node.git'
+	" Javascript
+	Plug 'pangloss/vim-javascript'
 	" Typescript
 	Plug 'leafgarland/typescript-vim'
-	Plug 'ianks/vim-tsx'
 	" React
 	Plug 'maxmellon/vim-jsx-pretty'
 	" Go
@@ -64,6 +62,29 @@ set t_Co=256
 	set number relativenumber
 	set noswapfile
 	autocmd Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+""" --- Backups & Undo
+	let target_path = expand('~/.vim/dirs/backups')
+        if !isdirectory(target_path)
+		call system('mkdir -p ' . target_path)
+	endif
+        let &backupdir = target_path
+
+	if has('persistent_undo')
+	    let target_path = expand('~/.vim/dirs/undos')
+	    if !isdirectory(target_path)
+		call system('mkdir -p ' . target_path)
+	endif
+	    let &undodir = target_path
+	    set undofile
+	endif
+
+""" --- Groups
+	augroup SyntaxSettings
+		autocmd!
+		autocmd BufNewFile,BufRead *.jsx,*js set filetype=javascript
+		autocmd BufNewFile,BufRead *.tsx,*.ts set filetype=typescript
+	augroup END
 
 """ --- Keybindings
 	nnoremap S :%s//g<Left><Left>
@@ -171,16 +192,11 @@ set t_Co=256
 	    \ set textwidth=99
 	    \ set colorcolumn=88
 
-
-""" --- Front End 
-	au BufNewFile,BufRead *.html, *.css
-	    \ set expandtab
-	    \ set autoindent
-	    \ set tabstop=2
-	    \ set softtabstop=2
-	    \ set shiftwidth=2
-
-""" --- Whitespace
+""" --- Frontend
+	autocmd Filetype typescript setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100
+	autocmd Filetype javascript setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100
+	autocmd Filetype html setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100
+	autocmd Filetype css setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100
 
 """ --- Clipboard
 set clipboard=unnamedplus

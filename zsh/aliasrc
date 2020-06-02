@@ -23,3 +23,7 @@ alias dc='docker-compose'
 
 ## zathura
 alias zath='zathura'
+
+
+## misc	
+alias todo='vim $TODOPATH'

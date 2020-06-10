@@ -29,6 +29,7 @@ let mapleader =" "
 	Plug 'dense-analysis/ale'
 	" Golden Ratio
 	Plug 'roman/golden-ratio'
+	" Markdown
 	" Node
 	Plug 'git@github.com:moll/vim-node.git'
 	" Javascript
@@ -80,11 +81,17 @@ let mapleader =" "
 	endif
 
 """ --- Groups
-	augroup SyntaxSettings
+	augroup FrontendGroup
 		autocmd!
 		autocmd BufNewFile,BufRead *.jsx,*js set filetype=javascript
 		autocmd BufNewFile,BufRead *.tsx,*.ts set filetype=typescript
 	augroup END
+
+	augroup CGroup
+		autocmd!
+		autocmd BufNewFile,BufRead *.h,*.c set filetype=C
+	augroup END
+
 
 """ --- Keybindings
 	nnoremap S :%s//g<Left><Left>
@@ -139,7 +146,7 @@ let mapleader =" "
 	map g# <Plug>(incsearch-nohl-g#)
 
 """ --- Goyo
-	map <leader>f :Goyo \| set linebreak<CR>
+	map <leader>gy :Goyo \| set linebreak<CR>
 
 """ --- NerdTree
 	map <leader>f :NERDTreeToggle<CR>
@@ -191,6 +198,9 @@ let mapleader =" "
 	    \ set fileformat=unix
 	    \ set textwidth=99
 	    \ set colorcolumn=88
+
+""" --- Embedded
+	au Filetype C setlocal ts=4 sw=4 sts=4 expandtab colorcolumn=80
 
 """ --- Frontend
 	autocmd Filetype typescript setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100

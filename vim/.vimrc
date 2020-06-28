@@ -93,10 +93,8 @@ let mapleader =" "
 	augroup END
 
 
-""" --- Keybindings
+""" --- Vim Specific Keybindings
 	nnoremap S :%s//g<Left><Left>
-	nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
-	nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
 	nnoremap <silent> <Leader>h :split<CR>
 	nnoremap <silent> <Leader>v :vsplit<CR>
 	nnoremap <silent> <Leader>r :GoldenRatioToggle<CR>
@@ -149,7 +147,8 @@ let mapleader =" "
 	map <leader>gy :Goyo \| set linebreak<CR>
 
 """ --- NerdTree
-	map <leader>f :NERDTreeToggle<CR>
+	map <leader>n :NERDTreeToggle<CR>
+	nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
 
 """ --- Spell-check
 	map <leader>o :setlocal spell! spelllang=en_gb<CR>
@@ -179,6 +178,10 @@ let mapleader =" "
 	\	'html': ['prettier'],
 	\}
 
+""" --- YCM
+	let g:ycm_autoclose_preview_window_after_completion=1
+	nnoremap <silent> <Leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 """ --- Javascript
 	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
 
@@ -189,15 +192,10 @@ let mapleader =" "
 	let g:go_fmt_command = "goimports"
 
 """ --- Python
-	au BufNewFile,BufRead *.py
-	    \ set expandtab	|"  replace tabs with spaces
-	    \ set autoindent    |"  copy indent when starting a new line
-	    \ set tabstop=4
-	    \ set softtabstop=4
-	    \ set shiftwidth=4
-	    \ set fileformat=unix
-	    \ set textwidth=99
-	    \ set colorcolumn=88
+	au FileType python setlocal ts=4 sts=4 sw=4 fileformat=unix textwidth=99 colorcolumn=88 autoindent expandtab
+        au FileType python map <Leader>b oimport ipdb; ipdb.set_trace()
+        au FileType python map <Leader>c odef __init__(self, *args, **kwargs):
+	au Filetype python map <Leader>f :Black<CR>
 
 """ --- Embedded
 	au Filetype C setlocal ts=4 sw=4 sts=4 expandtab colorcolumn=80

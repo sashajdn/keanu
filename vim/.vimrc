@@ -12,15 +12,15 @@ let mapleader =" "
 
 """ --- Plugin Manager
 	call plug#begin('~/.vim/plugged')
-
 	" Highlighting
 	Plug 'haya14busa/incsearch.vim' " Vim Tree
-	Plug 'scrooloose/nerdtree'
 	" Code
 	Plug 'ervandew/supertab'
 	" Fuzzy Finder
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': '/.install --all' }
 	Plug 'junegunn/fzf.vim'
+	" Tree
+	Plug 'scrooloose/nerdtree'
 	" Text Search
 	Plug 'git@github.com:rking/ag.vim.git'
 	" Syntax Highlighting
@@ -29,7 +29,6 @@ let mapleader =" "
 	Plug 'dense-analysis/ale'
 	" Golden Ratio
 	Plug 'roman/golden-ratio'
-	" Markdown
 	" Node
 	Plug 'git@github.com:moll/vim-node.git'
 	" Javascript
@@ -144,21 +143,21 @@ let mapleader =" "
 	map g# <Plug>(incsearch-nohl-g#)
 
 """ --- Goyo
-	map <leader>gy :Goyo \| set linebreak<CR>
+	noremap <Leader>gy :Goyo \| set linebreak<CR>
 
 """ --- NerdTree
-	map <leader>n :NERDTreeToggle<CR>
+	noremap <Leader>t :NERDTreeToggle<CR>
 	nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
 
 """ --- Spell-check
-	map <leader>o :setlocal spell! spelllang=en_gb<CR>
+	nnoremap <Leader>o :setlocal spell! spelllang=en_gb<CR>
 
 """ --- Vim Splits
 	set splitbelow splitright
-	nnoremap <leader>h :wincmd h<CR>
-	nnoremap <leader>j :wincmd j<CR>
-	nnoremap <leader>k :wincmd k<CR>
-	nnoremap <leader>l :wincmd l<CR>
+	nnoremap <Leader>h :wincmd h<CR>
+	nnoremap <Leader>j :wincmd j<CR>
+	nnoremap <Leader>k :wincmd k<CR>
+	nnoremap <Leader>l :wincmd l<CR>
 
 """ --- ALE
 	highlight ALEWarning ctermbg=DarkMagenta
@@ -178,10 +177,16 @@ let mapleader =" "
 	\	'html': ['prettier'],
 	\}
 
+""" --- FZF
+	inoremap <Leader>s <Esc><Esc>:BLines!<CR>
+	nnoremap <Leader>s <Esc><Esc>:Files!<CR>
+	nnoremap <Leader>gs <Esc><Esc>:BCommits!<CR>
+	
+
 """ --- YCM
 	let g:ycm_autoclose_preview_window_after_completion=1
-	nnoremap <silent> <Leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-	nnoremap <silent> <Leader>gt :YcmCompleter GoToType<CR>
+	noremap <silent> <Leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+	noremap <silent> <Leader>gt :YcmCompleter GoToType<CR>
 
 """ --- Javascript
 	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
@@ -194,9 +199,9 @@ let mapleader =" "
 
 """ --- Python
 	au FileType python setlocal ts=4 sts=4 sw=4 fileformat=unix textwidth=99 colorcolumn=88 autoindent expandtab
-        au FileType python map <Leader>b oimport ipdb; ipdb.set_trace()
-        au FileType python map <Leader>c odef __init__(self, *args, **kwargs):
-	au Filetype python map <Leader>f :Black<CR>
+        au FileType python noremap <Leader>b oimport ipdb; ipdb.set_trace()
+        au FileType python noremap <Leader>c odef __init__(self, *args, **kwargs):
+	au Filetype python nnoremap <Leader>f :Black<CR>
 
 """ --- Embedded
 	au Filetype C setlocal ts=4 sw=4 sts=4 expandtab colorcolumn=80

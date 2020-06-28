@@ -1,4 +1,4 @@
-" --- Keanu VIMRC
+""" --- Keanu VIMRC ---
 
 """ --- Leader
 let mapleader =" "
@@ -178,10 +178,9 @@ let mapleader =" "
 	\}
 
 """ --- FZF
-	inoremap <Leader>s <Esc><Esc>:BLines!<CR>
-	nnoremap <Leader>s <Esc><Esc>:Files!<CR>
-	nnoremap <Leader>gs <Esc><Esc>:BCommits!<CR>
-	
+	nnoremap <silent> <Leader>s <Esc><Esc>:Files!<CR>
+	noremap <silent> <C-p> <Esc><Esc>:BLines!<CR>
+	nnoremap <silent> <Leader>gs <Esc><Esc>:BCommits!<CR>
 
 """ --- YCM
 	let g:ycm_autoclose_preview_window_after_completion=1
@@ -199,8 +198,8 @@ let mapleader =" "
 
 """ --- Python
 	au FileType python setlocal ts=4 sts=4 sw=4 fileformat=unix textwidth=99 colorcolumn=88 autoindent expandtab
-        au FileType python noremap <Leader>b oimport ipdb; ipdb.set_trace()
-        au FileType python noremap <Leader>c odef __init__(self, *args, **kwargs):
+	au FileType python noremap <Leader>b oimport ipdb; ipdb.set_trace()
+	au FileType python noremap <Leader>c odef __init__(self, *args, **kwargs):
 	au Filetype python nnoremap <Leader>f :Black<CR>
 
 """ --- Embedded

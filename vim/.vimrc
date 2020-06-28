@@ -181,6 +181,7 @@ let mapleader =" "
 """ --- YCM
 	let g:ycm_autoclose_preview_window_after_completion=1
 	nnoremap <silent> <Leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+	nnoremap <silent> <Leader>gt :YcmCompleter GoToType<CR>
 
 """ --- Javascript
 	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab

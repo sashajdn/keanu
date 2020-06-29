@@ -188,9 +188,9 @@
 	\}
 
 """ --- FZF
-	nnoremap <silent> <Leader>s <Esc><Esc>:Files!<CR>
-	noremap <silent> <C-p> <Esc><Esc>:BLines!<CR>
-	nnoremap <silent> <Leader>gs <Esc><Esc>:BCommits!<CR>
+	nnoremap <silent> <C-p> <Esc><Esc>:Files!<CR>
+	inoremap <silent> <C-p> <Esc><Esc>:BLines!<CR>
+	nnoremap <silent> <C-g> <Esc><Esc>:BCommits!<CR>
 
 """ --- YCM
 	let g:ycm_autoclose_preview_window_after_completion=1

@@ -161,7 +161,7 @@ bindsym $mod+r mode "resize"
 
 ### --- Launch Programs --- ###
 bindsym $mod+Return exec --no-startup-id urxvt
-bindsym $mod+Mod1+b exec firefox
+bindsym $mod+Mod1+b exec chromium
 
 ### --- Screenshotting --- ###
 bindsym $mod+Mod1+p exec import png:- | xclip -selection clipboard -t image/png

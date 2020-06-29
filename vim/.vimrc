@@ -33,6 +33,8 @@
 	Plug 'dense-analysis/ale'
 	" Golden Ratio
 	Plug 'roman/golden-ratio'
+	" C/C++
+	Plug 'octol/vim-cpp-enhanced-highlight'
 	" Node
 	Plug 'git@github.com:moll/vim-node.git'
 	" Javascript
@@ -89,11 +91,6 @@
 		autocmd!
 		autocmd BufNewFile,BufRead *.jsx,*js set filetype=javascript
 		autocmd BufNewFile,BufRead *.tsx,*.ts set filetype=typescript
-	augroup END
-
-	augroup CGroup
-		autocmd!
-		autocmd BufNewFile,BufRead *.h,*.c set filetype=C
 	augroup END
 
 
@@ -217,8 +214,8 @@
 	au Filetype python nnoremap <Leader>f :Black<CR>
 	au FileType python set iskeyword-=_
 
-""" --- Embedded
-	au Filetype C setlocal ts=4 sw=4 sts=4 expandtab colorcolumn=80
+""" --- Embedded / C
+	au BufRead,BufNewFile *.h,*.c setlocal ts=4 sw=4 sts=4 expandtab colorcolumn=80
 
 """ --- Frontend
 	autocmd Filetype typescript setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100

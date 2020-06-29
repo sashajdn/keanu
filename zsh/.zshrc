@@ -104,5 +104,14 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -f "$HOME/keanu/.env" ] && source "$HOME/keanu/.env"
 
 
+### --- BAT --- ###
+export BAT_THEME="ansi-dark"
+
+
+### --- FZF --- ###
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+
+
 ### --- Syntax highlighting (should be last) --- ###
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null

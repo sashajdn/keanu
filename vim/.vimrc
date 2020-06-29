@@ -15,6 +15,7 @@
 	" Airline
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
+	Plug 'airblade/vim-rooter'
 	" Highlighting
 	Plug 'haya14busa/incsearch.vim' " Vim Tree
 	" Code
@@ -65,7 +66,6 @@
 	set number relativenumber
 	set noswapfile
 	set cursorline
-	set iskeyword-=_
 	autocmd Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 """ --- Backups & Undo
@@ -194,6 +194,7 @@
 	nnoremap <silent> <C-p> <Esc><Esc>:Files!<CR>
 	inoremap <silent> <C-p> <Esc><Esc>:BLines!<CR>
 	nnoremap <silent> <C-g> <Esc><Esc>:BCommits!<CR>
+	let $FZF_DEFAULT_OPTS="--ansi --layout reverse --margin=1,4 --preview 'bat --color=always'"
 
 """ --- YCM
 	let g:ycm_autoclose_preview_window_after_completion=1
@@ -214,6 +215,7 @@
 	au FileType python noremap <Leader>b oimport ipdb; ipdb.set_trace()
 	au FileType python noremap <Leader>c odef __init__(self, *args, **kwargs):
 	au Filetype python nnoremap <Leader>f :Black<CR>
+	au FileType python set iskeyword-=_
 
 """ --- Embedded
 	au Filetype C setlocal ts=4 sw=4 sts=4 expandtab colorcolumn=80

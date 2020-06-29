@@ -1,7 +1,7 @@
 """ --- Keanu VIMRC ---
 
 """ --- Leader
-let mapleader =" "
+	let mapleader =" "
 
 """ --- Plugin Manager Install
 	if empty(glob('~/.vim/autoload/plug.vim'))
@@ -12,6 +12,9 @@ let mapleader =" "
 
 """ --- Plugin Manager
 	call plug#begin('~/.vim/plugged')
+	" Airline
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
 	" Highlighting
 	Plug 'haya14busa/incsearch.vim' " Vim Tree
 	" Code
@@ -61,6 +64,8 @@ let mapleader =" "
 	set encoding=utf-8
 	set number relativenumber
 	set noswapfile
+	set cursorline
+	set iskeyword-=_
 	autocmd Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 """ --- Backups & Undo
@@ -158,6 +163,11 @@ let mapleader =" "
 	nnoremap <Leader>j :wincmd j<CR>
 	nnoremap <Leader>k :wincmd k<CR>
 	nnoremap <Leader>l :wincmd l<CR>
+
+""" --- Airlines
+	let g:airline_powerline_fonts = 1
+	let g:airline_theme = 'onedark'
+	set noshowmode
 
 """ --- ALE
 	highlight ALEWarning ctermbg=DarkMagenta

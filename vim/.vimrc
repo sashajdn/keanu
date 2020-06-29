@@ -104,6 +104,9 @@
 	nnoremap <silent> <Leader>r :GoldenRatioToggle<CR>
 	nnoremap <silent> <Leader>l :call g:ToggleNuMode()<CR>
 
+	vnoremap < <gv
+	vnoremap > >gv	
+
 """ --- Autocompletion:
 	set wildmode=longest,list,full
 

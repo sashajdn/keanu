@@ -89,6 +89,10 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
+### --- NVM --- ###
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 ### --- Aliases --- ###
 # Load aliases if exist
 [ -f "$HOME/keanu/zsh/aliasrc" ] && source "$HOME/keanu/zsh/aliasrc"
@@ -98,6 +102,15 @@ bindkey -s '^o' 'lfcd\n'
 [ -f "$HOME/keanu/environments/keanu.env" ] && source "$HOME/keanu/environments/keanu.env"
 [ -f "$HOME/keanu/zsh/zshenv" ] && source "$HOME/keanu/zsh/zshenv"
 [ -f "$HOME/keanu/.env" ] && source "$HOME/keanu/.env"
+
+
+### --- BAT --- ###
+export BAT_THEME="ansi-dark"
+
+
+### --- FZF --- ###
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 
 
 ### --- Syntax highlighting (should be last) --- ###

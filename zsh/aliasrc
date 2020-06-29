@@ -1,5 +1,7 @@
 ### --- Keanu Alias File --- ###
 
+### Aliases
+
 ## ls
 alias ls='ls --color=auto'
 alias la='ls -a'
@@ -9,13 +11,27 @@ alias lla='ls -la'
 
 ## git
 alias gs='git status'
-alias gl='git log'
+alias gl='git log --graph --abbrev-commit --decorate'
 alias gch='git checkout'
 alias ga='git add'
 alias gpl='git pull'
-alias gps='git push origin'
+alias gpo='git push origin'
 alias gc='git commit'
 
 
-# docker-compose
+## docker
 alias dc='docker-compose'
+
+
+## zathura
+alias zath='zathura'
+
+
+## misc	
+alias todo='vim $TODOPATH'
+
+
+### Suffix Aliases
+alias -s pdf=zathura
+alias -s {md}=vim
+alias -s py=python

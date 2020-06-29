@@ -5,7 +5,7 @@ export READER="zathura"
 export VISUAL="vim"
 export CODEEDITOR="vim"
 export TERMINAL="urxvt"
-export BROWSER="firefox"
+export BROWSER="chromium"
 export VIMBROWSER="firefox"
 export OPENER="xdg-open"
 export WM="i3"
@@ -23,3 +23,7 @@ export LESS_TERMCAP_so=$(tput bold; tput setaf 3)  ## yellow
 export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
 export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 6)  ## cyan
 export LESS_TERMCAP_me=$(tput sgr0)  ## End bold, blinking, standout & underline
+
+
+### Misc ###
+export TODOPATH="$HOME/repos/wiki/personal/todo.md"

@@ -161,7 +161,11 @@ bindsym $mod+r mode "resize"
 
 ### --- Launch Programs --- ###
 bindsym $mod+Return exec --no-startup-id urxvt
-bindsym $mod+Mod1+b exec firefox
+bindsym $mod+Mod1+b exec chromium
+
+### --- Screenshotting --- ###
+bindsym $mod+Mod1+p exec import png:- | xclip -selection clipboard -t image/png
+bindsym $mod+Shift+p exec import $HOME/Pictures/screenshots/$(date  +"%Y-%m-%d-%H-%M-%S").png
 
 
 ### --- i3gaps --- ###
@@ -174,4 +178,4 @@ bar {
 }
 
 ### --- Wallpapers --- ###
-exec_always --no-startup-id feh --bg-scale ~/.wallpapers/neon_retro_tron_lines.jpg
+exec_always --no-startup-id feh --bg-scale ~/.wallpapers/default.jpg

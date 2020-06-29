@@ -1,10 +1,7 @@
-" --- Keanu VIMRC
+""" --- Keanu VIMRC ---
 
 """ --- Leader
-let mapleader =" "
-
-""" --- Colours
-set t_Co=256
+	let mapleader =" "
 
 """ --- Plugin Manager Install
 	if empty(glob('~/.vim/autoload/plug.vim'))
@@ -15,15 +12,19 @@ set t_Co=256
 
 """ --- Plugin Manager
 	call plug#begin('~/.vim/plugged')
-
+	" Airline
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	Plug 'airblade/vim-rooter'
 	" Highlighting
 	Plug 'haya14busa/incsearch.vim' " Vim Tree
-	Plug 'scrooloose/nerdtree'
 	" Code
 	Plug 'ervandew/supertab'
 	" Fuzzy Finder
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': '/.install --all' }
 	Plug 'junegunn/fzf.vim'
+	" Tree
+	Plug 'scrooloose/nerdtree'
 	" Text Search
 	Plug 'git@github.com:rking/ag.vim.git'
 	" Syntax Highlighting
@@ -34,9 +35,10 @@ set t_Co=256
 	Plug 'roman/golden-ratio'
 	" Node
 	Plug 'git@github.com:moll/vim-node.git'
+	" Javascript
+	Plug 'pangloss/vim-javascript'
 	" Typescript
 	Plug 'leafgarland/typescript-vim'
-	Plug 'ianks/vim-tsx'
 	" React
 	Plug 'maxmellon/vim-jsx-pretty'
 	" Go
@@ -63,16 +65,47 @@ set t_Co=256
 	set encoding=utf-8
 	set number relativenumber
 	set noswapfile
+	set cursorline
 	autocmd Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-""" --- Keybindings
+""" --- Backups & Undo
+	let target_path = expand('~/.vim/dirs/backups')
+        if !isdirectory(target_path)
+		call system('mkdir -p ' . target_path)
+	endif
+        let &backupdir = target_path
+
+	if has('persistent_undo')
+	    let target_path = expand('~/.vim/dirs/undos')
+	    if !isdirectory(target_path)
+		call system('mkdir -p ' . target_path)
+	endif
+	    let &undodir = target_path
+	    set undofile
+	endif
+
+""" --- Groups
+	augroup FrontendGroup
+		autocmd!
+		autocmd BufNewFile,BufRead *.jsx,*js set filetype=javascript
+		autocmd BufNewFile,BufRead *.tsx,*.ts set filetype=typescript
+	augroup END
+
+	augroup CGroup
+		autocmd!
+		autocmd BufNewFile,BufRead *.h,*.c set filetype=C
+	augroup END
+
+
+""" --- Vim Specific Keybindings
 	nnoremap S :%s//g<Left><Left>
-	nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
-	nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
 	nnoremap <silent> <Leader>h :split<CR>
 	nnoremap <silent> <Leader>v :vsplit<CR>
 	nnoremap <silent> <Leader>r :GoldenRatioToggle<CR>
 	nnoremap <silent> <Leader>l :call g:ToggleNuMode()<CR>
+
+	vnoremap < <gv
+	vnoremap > >gv	
 
 """ --- Autocompletion:
 	set wildmode=longest,list,full
@@ -118,20 +151,26 @@ set t_Co=256
 	map g# <Plug>(incsearch-nohl-g#)
 
 """ --- Goyo
-	map <leader>f :Goyo \| set linebreak<CR>
+	noremap <Leader>gy :Goyo \| set linebreak<CR>
 
 """ --- NerdTree
-	map <leader>f :NERDTreeToggle<CR>
+	noremap <Leader>t :NERDTreeToggle<CR>
+	nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
 
 """ --- Spell-check
-	map <leader>o :setlocal spell! spelllang=en_gb<CR>
+	nnoremap <Leader>o :setlocal spell! spelllang=en_gb<CR>
 
 """ --- Vim Splits
 	set splitbelow splitright
-	nnoremap <leader>h :wincmd h<CR>
-	nnoremap <leader>j :wincmd j<CR>
-	nnoremap <leader>k :wincmd k<CR>
-	nnoremap <leader>l :wincmd l<CR>
+	nnoremap <Leader>h :wincmd h<CR>
+	nnoremap <Leader>j :wincmd j<CR>
+	nnoremap <Leader>k :wincmd k<CR>
+	nnoremap <Leader>l :wincmd l<CR>
+
+""" --- Airlines
+	let g:airline_powerline_fonts = 1
+	let g:airline_theme = 'onedark'
+	set noshowmode
 
 """ --- ALE
 	highlight ALEWarning ctermbg=DarkMagenta
@@ -151,6 +190,17 @@ set t_Co=256
 	\	'html': ['prettier'],
 	\}
 
+""" --- FZF
+	nnoremap <silent> <C-p> <Esc><Esc>:Files!<CR>
+	inoremap <silent> <C-p> <Esc><Esc>:BLines!<CR>
+	nnoremap <silent> <C-g> <Esc><Esc>:BCommits!<CR>
+	let $FZF_DEFAULT_OPTS="--ansi --layout reverse --margin=1,4 --preview 'bat --color=always'"
+
+""" --- YCM
+	let g:ycm_autoclose_preview_window_after_completion=1
+	noremap <silent> <Leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+	noremap <silent> <Leader>gt :YcmCompleter GoToType<CR>
+
 """ --- Javascript
 	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
 
@@ -161,26 +211,20 @@ set t_Co=256
 	let g:go_fmt_command = "goimports"
 
 """ --- Python
-	au BufNewFile,BufRead *.py
-	    \ set expandtab	|"  replace tabs with spaces
-	    \ set autoindent    |"  copy indent when starting a new line
-	    \ set tabstop=4
-	    \ set softtabstop=4
-	    \ set shiftwidth=4
-	    \ set fileformat=unix
-	    \ set textwidth=99
-	    \ set colorcolumn=88
+	au FileType python setlocal ts=4 sts=4 sw=4 fileformat=unix textwidth=99 colorcolumn=88 autoindent expandtab
+	au FileType python noremap <Leader>b oimport ipdb; ipdb.set_trace()
+	au FileType python noremap <Leader>c odef __init__(self, *args, **kwargs):
+	au Filetype python nnoremap <Leader>f :Black<CR>
+	au FileType python set iskeyword-=_
 
+""" --- Embedded
+	au Filetype C setlocal ts=4 sw=4 sts=4 expandtab colorcolumn=80
 
-""" --- Front End 
-	au BufNewFile,BufRead *.html, *.css
-	    \ set expandtab
-	    \ set autoindent
-	    \ set tabstop=2
-	    \ set softtabstop=2
-	    \ set shiftwidth=2
-
-""" --- Whitespace
+""" --- Frontend
+	autocmd Filetype typescript setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100
+	autocmd Filetype javascript setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100
+	autocmd Filetype html setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100
+	autocmd Filetype css setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100
 
 """ --- Clipboard
 set clipboard=unnamedplus

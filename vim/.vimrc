@@ -215,7 +215,7 @@
 	au FileType python set iskeyword-=_
 
 """ --- Embedded / C
-	au BufRead,BufNewFile *.h,*.c setlocal ts=4 sw=4 sts=4 expandtab colorcolumn=80
+	au FileType c setlocal ts=4 sw=4 sts=4 expandtab colorcolumn=80
 
 """ --- Frontend
 	autocmd Filetype typescript setlocal ts=2 sw=2 sts=2 expandtab colorcolumn=100

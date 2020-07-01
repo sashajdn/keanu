@@ -2,14 +2,14 @@
 
 ### Aliases
 
-## ls
+## Shell Commands
 alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -la'
 
 
-## git
+## Git
 alias gs='git status'
 alias gl='git log --graph --abbrev-commit --decorate'
 alias gch='git checkout'
@@ -19,19 +19,23 @@ alias gpo='git push origin'
 alias gc='git commit'
 
 
-## docker
+### Docker
 alias dc='docker-compose'
 
 
-## zathura
+### Zathura
 alias zath='zathura'
 
 
-## misc	
+### Misc	
 alias todo='vim $TODOPATH'
 
 
 ### Suffix Aliases
-alias -s pdf=zathura
+alias -s pdf='zathura &!'
 alias -s {md}=vim
 alias -s py=python
+
+### Vim
+alias vi="vim"
+alias v="vim"

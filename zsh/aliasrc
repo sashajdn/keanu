@@ -29,6 +29,7 @@ alias zath='zathura'
 
 ### Misc	
 alias todo='vim $TODOPATH'
+alias wiki='cd $WIKIPATH && ls'
 
 
 ### Suffix Aliases

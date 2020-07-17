@@ -28,3 +28,8 @@ export LESS_TERMCAP_me=$(tput sgr0)  ## End bold, blinking, standout & underline
 ### Misc ###
 export TODOPATH="$HOME/repos/wiki/personal/todo.md"
 export WIKIPATH="$HOME/repos/wiki/"
+
+
+### Kraken Pi ###
+export KPCIP=192.168.1.255/24
+export KCDURL="http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/"

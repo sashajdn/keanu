@@ -2,12 +2,8 @@
 
 ### Aliases
 
-## Shell Commands
-alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -l'
-alias lla='ls -la'
-
+### Docker
+alias dc='docker-compose'
 
 ## Git
 alias gs='git status'
@@ -18,13 +14,8 @@ alias gpl='git pull'
 alias gpo='git push origin'
 alias gc='git commit'
 
-
-### Docker
-alias dc='docker-compose'
-
-
-### Zathura
-alias zath='zathura'
+## Kubernetes
+alias kc='kubectl'
 
 
 ### Misc	
@@ -32,11 +23,24 @@ alias todo='vim $TODOPATH'
 alias wiki='cd $WIKIPATH && ls'
 
 
+## Shell Commands
+alias ls='ls --color=auto'
+alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -la'
+
+
 ### Suffix Aliases
 alias -s pdf='zathura &!'
 alias -s {md}=vim
 alias -s py=python
 
+
 ### Vim
 alias vi="vim"
 alias v="vim"
+
+
+### Zathura
+alias zath='zathura'
+

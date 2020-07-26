@@ -18,9 +18,12 @@ alias gc='git commit'
 alias kc='kubectl'
 
 
-### Misc	
+### Keanu
 alias todo='vim $TODOPATH'
+alias learn='vim $TOLEARNPATH'
+alias toread='vim $TOREADPATH'
 alias wiki='cd $WIKIPATH && ls'
+alias verv='cd $VERVPATH && ls'
 
 
 ## Shell Commands
@@ -43,4 +46,3 @@ alias v="vim"
 
 ### Zathura
 alias zath='zathura'
-

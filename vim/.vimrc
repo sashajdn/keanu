@@ -11,7 +11,7 @@
 	endif
 
 """ --- Plugin Manager
-	call plug#begin('~/.vim/plugged')
+	call plug#begin('~/.vim/plugged') " Go
 	" Airline
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
@@ -43,8 +43,6 @@
 	Plug 'leafgarland/typescript-vim'
 	" React
 	Plug 'maxmellon/vim-jsx-pretty'
-	" Go
-	Plug 'fatih/vim-go'
 	" Haskell
 	Plug 'neovimhaskell/haskell-vim'
 	" Python
@@ -205,10 +203,14 @@
 	autocmd FileType typescript setlocal ts=2 sts=2 sw=2 expandtab formatprg=prettier\ --parser\ typescript
  
 """ --- Go
+	autocmd Filetype go setlocal ts=4 sw=4 sts=4S colorcolumn=99 expandtab
 	let g:go_fmt_command = "goimports"
+	let g:go_fmt_fail_silently = 1
+	let g:go_fmt_autosave = 0
+	let g:go_auto_type_info = 1
 
 """ --- Python
-	au FileType python setlocal ts=4 sts=4 sw=4 fileformat=unix textwidth=99 colorcolumn=88 autoindent expandtab
+	au FileType python setlocal ts=4 sts=4 sw=4 fileformat=unix colorcolumn=88 autoindent expandtab
 	au FileType python noremap <Leader>b oimport ipdb; ipdb.set_trace()
 	au FileType python noremap <Leader>c odef __init__(self, *args, **kwargs):
 	au Filetype python nnoremap <Leader>f :Black<CR>

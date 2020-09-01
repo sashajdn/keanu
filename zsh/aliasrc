@@ -16,6 +16,7 @@ alias gc='git commit'
 
 ## Kubernetes
 alias kc='kubectl'
+alias mk='minikube'
 
 
 ### Keanu

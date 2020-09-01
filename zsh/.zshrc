@@ -103,6 +103,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -f "$HOME/keanu/zsh/zshenv" ] && source "$HOME/keanu/zsh/zshenv"
 [ -f "$HOME/keanu/.env" ] && source "$HOME/keanu/.env"
 
+### --- Kubernetes --- ###
+source <(kubectl completion zsh)
+complete -F __start_kubectl kc
 
 ### --- BAT --- ###
 export BAT_THEME="ansi-dark"

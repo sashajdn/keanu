@@ -173,7 +173,7 @@
 	let g:ale_lint_on_text_changed = 1
 	let g:ale_set_highlights = 1
 	let g:ale_linters = {
-	\	'python': ['pylint', 'flake8', 'isort', 'black'],
+	\	'python': ['pylint', 'flake8', 'isort', 'black', 'mypy'],
 	\	'javascript': ['eslint'],
 	\	'typescript': ['tsserver', 'tslint'],
 	\}
@@ -204,6 +204,10 @@
  
 """ --- Go
 	autocmd Filetype go setlocal ts=4 sw=4 sts=4S colorcolumn=99 expandtab
+
+	au FileType go noremap <Leader>b oruntime.Breakpoint()
+	au FileType go noremap <Leader>e oif err != nil {}
+
 	let g:go_fmt_command = "goimports"
 	let g:go_fmt_fail_silently = 1
 	let g:go_fmt_autosave = 0
@@ -211,8 +215,10 @@
 
 """ --- Python
 	au FileType python setlocal ts=4 sts=4 sw=4 fileformat=unix colorcolumn=88 autoindent expandtab
+
 	au FileType python noremap <Leader>b oimport ipdb; ipdb.set_trace()
 	au FileType python noremap <Leader>c odef __init__(self, *args, **kwargs):
+
 	au Filetype python nnoremap <Leader>f :Black<CR>
 	au FileType python set iskeyword-=_
 

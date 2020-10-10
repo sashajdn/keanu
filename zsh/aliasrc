@@ -2,14 +2,10 @@
 
 ### Aliases
 
-## ls
-alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -l'
-alias lla='ls -la'
+### Docker
+alias dc='docker-compose'
 
-
-## git
+## Git
 alias gs='git status'
 alias gl='git log --graph --abbrev-commit --decorate'
 alias gch='git checkout'
@@ -18,20 +14,44 @@ alias gpl='git pull'
 alias gpo='git push origin'
 alias gc='git commit'
 
-
-## docker
-alias dc='docker-compose'
-
-
-## zathura
-alias zath='zathura'
+## Kubernetes
+alias kc='kubectl'
+alias mk='minikube'
 
 
-## misc	
+### Keanu
 alias todo='vim $TODOPATH'
+alias learn='vim $TOLEARNPATH'
+alias toread='vim $TOREADPATH'
+alias wiki='cd $KEANU_WIKI && ls -a'
+alias repos='cd $KEANU_REPOS && ls -a'
+alias verv='cd $VERVPATH && ls -a'
+alias goals='vim $KEANU_GOALS'
+alias finances='vim $KEANU_FINANCES'
+alias timetable='vim $KEANU_TIMETABLE'
+
+
+### Python
+alias pyinitd='find . -type d -exec touch {}/__init__.py \;'  # creates `__init__.py` in all dirs
+
+
+## Shell Commands
+alias ls='ls --color=auto'
+alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -la'
 
 
 ### Suffix Aliases
-alias -s pdf=zathura
+alias -s pdf='zathura &!'
 alias -s {md}=vim
 alias -s py=python
+
+
+### Vim
+alias vi="vim"
+alias v="vim"
+
+
+### Zathura
+alias zath='zathura'

@@ -23,8 +23,16 @@ alias mk='minikube'
 alias todo='vim $TODOPATH'
 alias learn='vim $TOLEARNPATH'
 alias toread='vim $TOREADPATH'
-alias wiki='cd $WIKIPATH && ls'
-alias verv='cd $VERVPATH && ls'
+alias wiki='cd $KEANU_WIKI && ls -a'
+alias repos='cd $KEANU_REPOS && ls -a'
+alias verv='cd $VERVPATH && ls -a'
+alias goals='vim $KEANU_GOALS'
+alias finances='vim $KEANU_FINANCES'
+alias timetable='vim $KEANU_TIMETABLE'
+
+
+### Python
+alias pyinitd='find . -type d -exec touch {}/__init__.py \;'  # creates `__init__.py` in all dirs
 
 
 ## Shell Commands

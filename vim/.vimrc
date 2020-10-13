@@ -11,7 +11,7 @@
 	endif
 
 """ --- Plugin Manager
-	call plug#begin('~/.vim/plugged') " Go
+	call plug#begin('~/.vim/plugged')
 	" Airline
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
@@ -35,6 +35,8 @@
 	Plug 'roman/golden-ratio'
 	" C/C++
 	Plug 'octol/vim-cpp-enhanced-highlight'
+	" Go
+	Plug 'fatih/vim-go'
 	" Node
 	Plug 'git@github.com:moll/vim-node.git'
 	" Javascript

@@ -48,9 +48,10 @@ alias -s {md}=vim
 alias -s py=python
 
 
-### Vim
+### Vim / Neovim
 alias vi="vim"
 alias v="vim"
+alias nv="nvim"
 
 
 ### Zathura

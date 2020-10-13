@@ -15,9 +15,11 @@ export WALLPAPER="$(echo $HOME/keanu/wallpapers/default.jpg)"
 ### Python ###
 export PATH=$PATH:$HOME/.local/bin
 
+
 ### Go ###
 export GOPATH=/home/alexjperkins/go
-export PATH=$PATH:/home/alexjperkins/go/bin
+export GOBIN=/home/alexjperkins/go/bin
+export PATH=$PATH:$GOBIN
 
 
 ### LESS TERMCAP ###

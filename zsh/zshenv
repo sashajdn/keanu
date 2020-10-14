@@ -1,9 +1,10 @@
 ### --- Keanu ZSH ENV --- ###
 
-export EDITOR="vim"
+export EDITOR="nvim"
+
 export READER="zathura"
-export VISUAL="vim"
-export CODEEDITOR="vim"
+export VISUAL=$EDITOR
+export CODEEDITOR=$EDITOR
 export TERMINAL="urxvt"
 export BROWSER="chromium"
 export VIMBROWSER="firefox"

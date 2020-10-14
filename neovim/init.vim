@@ -49,6 +49,9 @@
 	"" Theme
 	Plug 'liuchengxu/space-vim-theme'
 
+	"" Typescript
+	Plug 'leafgarland/typescript-vim'
+
 	call plug#end()
 
 
@@ -124,7 +127,7 @@
 	"" FZF
 	nnoremap <silent> <C-f> <Esc><Esc>:Files!<CR>
 	inoremap <silent> <C-f> <Esc><Esc>:BLines!<CR>
-	nnoremap <silent> <C-g> <Esc><Esc>:BCommits!<CR>
+	nnoremap <silent> <C-g> <Esc><Esc>:Rg!<CR>
 
 
 	"" GOYO
@@ -134,6 +137,23 @@
 	"" NerdTree
 	noremap <Leader>t :NERDTreeToggle<CR>
 	nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
+
+
+	"" Python
+	au FileType python noremap <Leader>b oimport ipdb; ipdb.set_trace()
+	au FileType python noremap <Leader>c odef __init__(self, *args, **kwargs):
+
+
+	"" Terminal
+	tnoremap <C-E> <C-\><C-N>
+	au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+	function! OpenTerminal()
+		split term://zsh
+		resize 10
+	endfunction
+
+	nnoremap <C-T> :call OpenTerminal()<CR>
 
 
 	"" Vim
@@ -182,6 +202,9 @@
 	endif
 
 
+""" --- Groups
+
+
 """ --- Airline
 	let g:airline_powerline_fonts = 1
 	let g:airline_theme = 'onedark'
@@ -204,6 +227,16 @@
 
 	let g:ale_linters = {
 	\	'python': ['pylint', 'flake8', 'isort', 'black', 'mypy'],
+	\	'javascript': ['eslint'],
+	\	'typescript': ['eslint']
+	\}
+
+	let g:ale_fixers = {
+	\	'python': ['black'],
+	\	'javascript': ['eslint'],
+	\	'typescript': ['eslint'],
+	\	'scss': ['prettier'],
+	\	'html': ['prettier'],
 	\}
 
 
@@ -222,8 +255,11 @@
 
 
 """ --- NerdTree
-	noremap <Leader>t :NERDTreeToggle<CR>
-	nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
+	let NERDTreeMinimalUI = 1
+	let NERDTreeDirArrows = 1
+	let NERDTreeQuitOnOpen = 1
+	let NERDTreeAutoDeleteBuffer = 1
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
 """ --- Python
@@ -235,8 +271,6 @@
 		set pyx=2
 	endif
 
-	au FileType python noremap <Leader>b oimport ipdb; ipdb.set_trace()
-	au FileType python noremap <Leader>c odef __init__(self, *args, **kwargs):
 
 
 """ --- Colour Scheme

@@ -14,8 +14,15 @@
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'airblade/vim-rooter'
 
+	"" ALE
+	Plug 'dense-analysis/ale'
+
 	"" CoC
 	Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'pappasam/coc-jedi', {'do': 'yarn install --frozen-lockfile && yarn build'}
+
+	"" I3
+	Plug 'PotatoesMaster/i3-vim-syntax'
 	
 	"" FZF
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -29,6 +36,9 @@
 
 	"" GOYO
 	Plug 'junegunn/goyo.vim'
+
+	" Haskell
+	Plug 'neovimhaskell/haskell-vim'
 
 	"" Highlighting
 	Plug 'haya14busa/incsearch.vim' " Vim Tree
@@ -80,13 +90,17 @@
 	"" Base
 	vnoremap <Leader>p "_dp
 
+	"" ALE
+	nmap <silent> <C-p> <Plug>(ale_previous_wrap)
+	nmap <silent> <C-n> <Plug>(ale_next_wrap)
+
 
 	"" COC
 	let g:go_def_mapping_enabled = 0
-	nmap <Leader>gd <Plug>(coc-definition)
-	nmap <Leader>gt <Plug>(coc-type-definition)
-	nmap <Leader>gi <Plug>(coc-implementation)
-	nmap <Leader>gr <Plug>(coc-references)
+	nmap <silent> <Leader>gd <Plug>(coc-definition)
+	nmap <silent> <Leader>gt <Plug>(coc-type-definition)
+	nmap <silent> <Leader>gi <Plug>(coc-implementation)
+	nmap <silent> <Leader>gr <Plug>(coc-references)
 
 	" Tab Completion
 	inoremap <silent><expr> <TAB>
@@ -108,8 +122,8 @@
 
 
 	"" FZF
-	nnoremap <silent> <C-p> <Esc><Esc>:Files!<CR>
-	inoremap <silent> <C-p> <Esc><Esc>:BLines!<CR>
+	nnoremap <silent> <C-f> <Esc><Esc>:Files!<CR>
+	inoremap <silent> <C-f> <Esc><Esc>:BLines!<CR>
 	nnoremap <silent> <C-g> <Esc><Esc>:BCommits!<CR>
 
 
@@ -125,8 +139,8 @@
 	"" Vim
 	nnoremap S :%s//g<Left><Left>
 
-	nnoremap <Silent><Leader>h :split<CR>
-	nnoremap <Silent><Leader>v :vsplit<CR>
+	nnoremap <silent> <Leader>V :split<CR>
+	nnoremap <silent> <Leader>v :vsplit<CR>
 
 	vnoremap < <gv
 	vnoremap > >gv	
@@ -173,6 +187,26 @@
 	let g:airline_theme = 'onedark'
 
 
+""" --- ALE
+	highlight ALEWarning ctermbg=DarkMagenta
+	let g:ale_sign_column_always = 1
+	let g:ale_completion_enabled = 0
+	let g:ale_completion_auto_import = 1
+	let g:ale_lint_on_text_changed = 1
+	let g:ale_set_highlights = 1
+	let g:ale_disable_lsp = 1
+
+	let g:airline#extensions#ale#enabled = 1
+
+	let g:ale_echo_msg_error_str = 'E'
+	let g:ale_echo_msg_warning_str = 'W'
+	let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+	let g:ale_linters = {
+	\	'python': ['pylint', 'flake8', 'isort', 'black', 'mypy'],
+	\}
+
+
 """ --- CoC
 
 
@@ -193,6 +227,16 @@
 
 
 """ --- Python
+	if has('python3')
+		set pyx=3
+	elseif has ('python')
+		set pyx=3
+	elseif has ('python2')
+		set pyx=2
+	endif
+
+	au FileType python noremap <Leader>b oimport ipdb; ipdb.set_trace()
+	au FileType python noremap <Leader>c odef __init__(self, *args, **kwargs):
 
 
 """ --- Colour Scheme

@@ -2,12 +2,12 @@
 
 
 """ --- Leader
-	let mapleader = ' ' 
+	nnoremap <SPACE> <Nop>
+	let mapleader =" "
 
 
 """ --- Plugin Manager
 	call plug#begin('~/.vim/plugged')
-
 
 	"" Airline
 	Plug 'vim-airline/vim-airline'
@@ -23,6 +23,18 @@
 
 	"" Go
 	Plug 'fatih/vim-go'
+
+	"" Golden Ratio
+	Plug 'roman/golden-ratio'
+
+	"" GOYO
+	Plug 'junegunn/goyo.vim'
+
+	"" Highlighting
+	Plug 'haya14busa/incsearch.vim' " Vim Tree
+
+	"" Tree
+	Plug 'scrooloose/nerdtree'
 
 	"" Theme
 	Plug 'liuchengxu/space-vim-theme'
@@ -42,6 +54,19 @@
 	set splitbelow splitright
 	set noshowmode
 
+	set hidden
+	set cmdheight=2
+	set updatetime=50
+	set shortmess+=c
+
+	set clipboard=unnamedplus
+
+	if has("patch-8.1.1564")
+		set signcolumn=number
+	else
+		set signcolumn=yes
+	endif
+
 	filetype plugin on
 	syntax on
 
@@ -52,17 +77,56 @@
 
 """ --- Mappings
 
+	"" Base
+	vnoremap <Leader>p "_dp
+
+
 	"" COC
-	nnoremap <Leader> gd <Plug>(coc-definition)
-	nnoremap <Leader> gt <Plug>(coc-type-definition)
-	nnoremap <Silent> <Leader> gi <Plug>(coc-implementation)
-	nnoremap <Silent> <Leader> gr <Plug>(coc-references)
+	let g:go_def_mapping_enabled = 0
+	nmap <Leader>gd <Plug>(coc-definition)
+	nmap <Leader>gt <Plug>(coc-type-definition)
+	nmap <Leader>gi <Plug>(coc-implementation)
+	nmap <Leader>gr <Plug>(coc-references)
+
+	" Tab Completion
+	inoremap <silent><expr> <TAB>
+	      \ pumvisible() ? "\<C-n>" :
+	      \ <SID>check_back_space() ? "\<TAB>" :
+	      \ coc#refresh()
+	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+	function! s:check_back_space() abort
+		let col = col('.') - 1
+		return !col || getline('.')[col - 1] =~# '\s'
+	endfunction
+
+	if has('nvim')
+		inoremap <silent><expr> <c-space> coc#refresh()
+	else
+		inoremap <silent><expr> <c-@> coc#refresh()
+	endif
+
+
+	"" FZF
+	nnoremap <silent> <C-p> <Esc><Esc>:Files!<CR>
+	inoremap <silent> <C-p> <Esc><Esc>:BLines!<CR>
+	nnoremap <silent> <C-g> <Esc><Esc>:BCommits!<CR>
+
+
+	"" GOYO
+	noremap <Leader>gy :Goyo \| set linebreak<CR>
+
+
+	"" NerdTree
+	noremap <Leader>t :NERDTreeToggle<CR>
+	nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
+
 
 	"" Vim
 	nnoremap S :%s//g<Left><Left>
 
-	nnoremap <silent> <Leader>h :split<CR>
-	nnoremap <silent> <Leader>v :vsplit<CR>
+	nnoremap <Silent><Leader>h :split<CR>
+	nnoremap <Silent><Leader>v :vsplit<CR>
 
 	vnoremap < <gv
 	vnoremap > >gv	
@@ -107,24 +171,28 @@
 """ --- Airline
 	let g:airline_powerline_fonts = 1
 	let g:airline_theme = 'onedark'
-	set noshowmode
 
 
 """ --- CoC
-	set hidden
-	set cmdheight=2
-	set updatetime=50
-	set shortmess+=c
-	set signcolumn=yes
 
 
 """ --- FZF
+	let $FZF_DEFAULT_OPTS="--ansi --layout reverse --margin=1,4 --preview 'bat --color=always'"
 
 
 """ --- Go
-	let g:go_def_mapping_enabled = 0
 
-	autocmd Filetype go setlocal ts=4 sw=4 sts=4S colorcolumn=99 expandtab
+
+""" --- Goyo
+	noremap <Leader>gy :Goyo \| set linebreak<CR>
+
+
+""" --- NerdTree
+	noremap <Leader>t :NERDTreeToggle<CR>
+	nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
+
+
+""" --- Python
 
 
 """ --- Colour Scheme

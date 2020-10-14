@@ -6,6 +6,9 @@ ln -sf $HOME/keanu/config $HOME/.config
 # vim
 ln -sf $HOME/keanu/vim/.vimrc $HOME/.vimrc
 
+# neovim
+ln -sf $HOME/keanu/neovim/init.vim $HOME/.config/nvim/init.vim
+
 # xorg
 ln -sf $HOME/keanu/xorg/.Xauthority $HOME/.Xauthority
 ln -sf $HOME/keanu/xorg/.Xdefaults $HOME/.Xdefaults

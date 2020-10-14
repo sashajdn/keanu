@@ -70,6 +70,11 @@
 	set cursorline
 	autocmd Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+
+""" --- Mappings
+	vnoremap <leader>p "_dP
+
+
 """ --- Backups & Undo
 	let target_path = expand('~/.vim/dirs/backups')
         if !isdirectory(target_path)

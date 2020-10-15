@@ -1,5 +1,4 @@
-""" --- Keanu NeoVimRC
-
+""" --- Keanu NeoVimRC 
 
 """ --- Leader
 	nnoremap <SPACE> <Nop>
@@ -20,6 +19,9 @@
 	"" CoC
 	Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 	Plug 'pappasam/coc-jedi', {'do': 'yarn install --frozen-lockfile && yarn build'}
+
+	"" Colorizer
+	Plug 'norcalli/nvim-colorizer.lua'
 
 	"" I3
 	Plug 'PotatoesMaster/i3-vim-syntax'
@@ -271,6 +273,9 @@
 		set pyx=2
 	endif
 
+
+""" --- Colorizer
+	" luafile $HOME/.config/nvim/lua/plug-colorizer.lua
 
 
 """ --- Colour Scheme

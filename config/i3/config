@@ -172,10 +172,8 @@ bindsym $mod+Shift+p exec import $HOME/Pictures/screenshots/$(date  +"%Y-%m-%d-%
 gaps inner 10
 gaps outer 10
 
-### --- i3bar --- ###
-bar {
-        status_command i3status
-}
+### --- Polybar --- ###
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 ### --- Wallpapers --- ###
 exec_always --no-startup-id feh --bg-scale ~/.wallpapers/default.jpg

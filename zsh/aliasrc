@@ -55,9 +55,10 @@ alias -s py=python
 
 
 ### Vim / Neo$EDITOR
-alias vi="vim"
-alias v="vim"
-alias nv="nvim"
+alias vi=$EDITOR
+alias v=$EDITOR
+alias nv=$EDITOR
+alias v2="vim"
 
 
 ### Zathura

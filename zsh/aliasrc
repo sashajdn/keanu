@@ -44,6 +44,10 @@ alias ll='ls -l'
 alias lla='ls -la'
 
 
+## Spotify
+alias spt='./$HOME/keanu/spotify-tui/launch.sh'
+
+
 ### Suffix Aliases
 alias -s pdf='zathura &!'
 alias -s {md}=$EDITOR

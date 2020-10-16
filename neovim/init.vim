@@ -50,6 +50,7 @@
 
 	"" Theme
 	Plug 'liuchengxu/space-vim-theme'
+	Plug 'ghifarit53/tokyonight-vim'
 
 	"" Typescript
 	Plug 'leafgarland/typescript-vim'
@@ -280,3 +281,7 @@
 
 """ --- Colour Scheme
 	colorscheme space_vim_theme
+	hi Normal     ctermbg=NONE guibg=NONE
+	hi LineNr     ctermbg=NONE guibg=NONE
+	hi SignColumn ctermbg=NONE guibg=NONE
+	hi VertSplit  ctermbg=NONE

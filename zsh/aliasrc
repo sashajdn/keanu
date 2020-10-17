@@ -45,7 +45,7 @@ alias lla='ls -la'
 
 
 ## Spotify
-alias spt='./$HOME/keanu/spotify-tui/launch.sh'
+alias spt='$HOME/keanu/spotify-tui/launch.sh'
 
 
 ### Suffix Aliases
@@ -55,9 +55,9 @@ alias -s py=python
 
 
 ### Vim / Neo$EDITOR
-alias vi=$EDITOR
-alias v=$EDITOR
-alias nv=$EDITOR
+alias vi="nvim"
+alias v="nvim"
+alias nv="nvim"
 alias v2="vim"
 
 

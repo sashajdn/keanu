@@ -45,6 +45,14 @@
 	"" Highlighting
 	Plug 'haya14busa/incsearch.vim' " Vim Tree
 
+	"" Syntax
+	Plug 'sheerun/vim-polyglot'
+	" Plug 'alexjperkins/vim-keanu-syntax'
+
+	"" Python
+	Plug 'vim-scripts/indentpython.vim'
+	Plug 'psf/black', { 'branch': 'stable' }
+
 	"" Tree
 	Plug 'scrooloose/nerdtree'
 
@@ -251,6 +259,16 @@
 
 
 """ --- Go
+	let g:go_fmt_command = "goimports"
+
+	let g:go_highlight_array_whitespace_error = 1
+	let g:go_highlight_chan_whitespace_error = 1
+	let g:go_highlight_trailing_whitespace_error = 1
+
+	let g:go_highlight_operators = 1
+	let g:go_highlight_functions = 1
+
+	let g:go_highlight_generate_tags = 1
 
 
 """ --- Goyo
@@ -274,6 +292,8 @@
 		set pyx=2
 	endif
 
+	let g:python_highlight_func_calls = 0
+
 
 """ --- Colorizer
 	" luafile $HOME/.config/nvim/lua/plug-colorizer.lua
@@ -281,6 +301,8 @@
 
 """ --- Colour Scheme
 	colorscheme space_vim_theme
+
+	" Transparent background
 	hi Normal     ctermbg=NONE guibg=NONE
 	hi LineNr     ctermbg=NONE guibg=NONE
 	hi SignColumn ctermbg=NONE guibg=NONE

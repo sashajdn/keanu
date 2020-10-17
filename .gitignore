@@ -20,3 +20,6 @@ lifx/lifx.conf
 config/systemd/user/default.target.wants*
 
 config/dconf/user
+
+# Spotify
+spotify-tui

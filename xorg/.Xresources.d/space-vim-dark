@@ -79,7 +79,7 @@
 ! 'Base16' Style colour definitions
 ! this allows for greater portability 
 ! (http://chriskempson.com/projects/base16/)
-#define base00 #262626
+#define base00 #0B0E1E
 #define base01 #96e931
 #define base02 #e89e0f
 #define base03 #555f69

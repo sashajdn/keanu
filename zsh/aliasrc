@@ -5,6 +5,7 @@
 ### Docker
 alias dc='docker-compose'
 
+
 ## Git
 alias gs='git status'
 alias gl='git log --graph --abbrev-commit --decorate'
@@ -14,21 +15,22 @@ alias gpl='git pull'
 alias gpo='git push origin'
 alias gc='git commit'
 
+
 ## Kubernetes
 alias kc='kubectl'
 alias mk='minikube'
 
 
 ### Keanu
-alias todo='vim $TODOPATH'
-alias learn='vim $TOLEARNPATH'
-alias toread='vim $TOREADPATH'
+alias todo='$EDITOR $TODOPATH'
+alias learn='$EDITOR $TOLEARNPATH'
+alias toread='$EDITOR $TOREADPATH'
 alias wiki='cd $KEANU_WIKI && ls -a'
 alias repos='cd $KEANU_REPOS && ls -a'
 alias verv='cd $VERVPATH && ls -a'
-alias goals='vim $KEANU_GOALS'
-alias finances='vim $KEANU_FINANCES'
-alias timetable='vim $KEANU_TIMETABLE'
+alias goals='$EDITOR $KEANU_GOALS'
+alias finances='$EDITOR $KEANU_FINANCES'
+alias timetable='$EDITOR $KEANU_TIMETABLE'
 
 
 ### Python
@@ -42,15 +44,21 @@ alias ll='ls -l'
 alias lla='ls -la'
 
 
+## Spotify
+alias spt='$HOME/keanu/spotify-tui/launch.sh'
+
+
 ### Suffix Aliases
 alias -s pdf='zathura &!'
-alias -s {md}=vim
+alias -s {md}=$EDITOR
 alias -s py=python
 
 
-### Vim
-alias vi="vim"
-alias v="vim"
+### Vim / Neo$EDITOR
+alias vi="nvim"
+alias v="nvim"
+alias nv="nvim"
+alias v2="vim"
 
 
 ### Zathura
